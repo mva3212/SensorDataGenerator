@@ -1,5 +1,4 @@
 require 'httparty'
-require 'yajl/json_gem'
 
 stations = IO.readlines('stations.txt')
 baseguid = stations.at(0)
@@ -14,7 +13,11 @@ while true
   post_data.chop!
   post_data += "]}"
   post_data= post_data.gsub("'","\"")
-  result = HTTParty.post('http://localhost:4567/api', :body => post_data, :headers => {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
+  result = HTTParty.post('http://localhost:8081/api', :body => post_data, :headers => {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
+  puts result
   sleep(30);
 end
+#http://192.99.15.192:8081/
+
+
 
